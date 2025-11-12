@@ -1,0 +1,32 @@
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import { dbConnect } from "./config/db.js";
+import authRoute from "./routes/auth.js";
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// Body Praser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+
+// db Connection
+dbConnect();
+
+// all apis
+app.use("/api/auth", authRoute);
+
+// root api
+app.get("/", (req, res) => {
+  res.json({
+    message: "Server running...",
+  });
+});
+
+app.listen(PORT, () =>
+  console.log(`Server is running on http://localhost:${PORT}`)
+);
