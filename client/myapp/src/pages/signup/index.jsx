@@ -155,7 +155,7 @@ export default function Signup() {
           <p>
             Already have an account?{" "}
             <p className={styles.link}>
-              <Link to="/">Login?</Link>
+              <Link to="/login">Login?</Link>
             </p>
           </p>
         </footer>

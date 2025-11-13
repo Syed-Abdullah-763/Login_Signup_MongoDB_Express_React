@@ -36,12 +36,6 @@ export default function Login() {
     }
   };
 
-  const handleForgotPassword = (e) => {
-    e.preventDefault();
-    // TODO: Route to your forgot-password page or open modal
-    setMessage("Password reset link flow goes here (demo).");
-  };
-
   return (
     <main className={styles.wrapper}>
       <section className={styles.card}>
@@ -105,11 +99,7 @@ export default function Login() {
               <input type="checkbox" className={styles.checkbox} />
               <span>Remember me</span>
             </label>
-            <Link
-              to="/forgetpassword"
-              className={styles.link}
-              onClick={handleForgotPassword}
-            >
+            <Link to="/forget-password" className={styles.link}>
               Forgot password?
             </Link>
           </div>
