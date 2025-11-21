@@ -6,12 +6,15 @@ import Signup from "./pages/signup";
 import OtpVerify from "./pages/otp";
 import ForgotPassword from "./pages/forgetPassword";
 import ChangePassword from "./pages/changePassword";
+import Profile from "./pages/profile";
+import Home from "./pages/home";
 
 function App() {
   return (
     <>
       <Routes>
         <Route element={<PublicRoute />}>
+          <Route index element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/otp-verification" element={<OtpVerify />} />
@@ -22,7 +25,7 @@ function App() {
 
       <Routes>
         <Route element={<PrivateRoute />}>
-          {/* <Route path="/dashboard" element={<Login />} /> */}
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
     </>

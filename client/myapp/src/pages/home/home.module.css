@@ -1,0 +1,305 @@
+:root {
+  --bg: #f7f8fb;
+  --card-bg: #ffffff;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --primary: #3b82f6;
+  --primary-600: #2563eb;
+  --border: #e5e7eb;
+  --ring: rgba(59, 130, 246, 0.35);
+  --shadow-1: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.page {
+  min-height: 100dvh;
+  background: radial-gradient(
+      1200px 600px at 0% 0%,
+      #eef2ff 0%,
+      transparent 50%
+    ),
+    radial-gradient(1200px 700px at 100% 100%, #fef3c7 0%, transparent 55%),
+    var(--bg);
+  color: var(--text);
+}
+
+.main {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 16px 40px;
+}
+
+/* Hero */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+  gap: 32px;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.heroText {
+  max-width: 560px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(219, 234, 254, 0.9);
+  color: #1d4ed8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.title {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin: 0 0 10px;
+}
+
+.title span {
+  display: block;
+  background: linear-gradient(120deg, #3b82f6, #ec4899);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.98rem;
+  max-width: 440px;
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.heroPrimary,
+.heroGhost {
+  border-radius: 999px;
+  padding: 9px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.heroPrimary {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  color: white;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.4);
+}
+
+.heroPrimary:hover {
+  filter: brightness(1.05);
+}
+
+.heroGhost {
+  background: rgba(255, 255, 255, 0.85);
+  color: #111827;
+  border-color: #e5e7eb;
+}
+
+.heroGhost:hover {
+  background: #f9fafb;
+}
+
+.mutedNote {
+  margin: 4px 0 0;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* Hero card */
+
+.heroCard {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 20px;
+  box-shadow: var(--shadow-1);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  overflow: hidden;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+  background: #f3f4f6;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #d1d5db;
+}
+
+.cardBody {
+  padding: 16px 16px 18px;
+}
+
+.cardTitle {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0 0 10px;
+}
+
+.cardLine {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  color: #4b5563;
+}
+
+.cardHint {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+/* Features */
+
+.features {
+  margin-top: 56px;
+}
+
+.features h2,
+.how h2,
+.pricing h2 {
+  font-size: 1.4rem;
+  margin-bottom: 16px;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.featureCard {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  padding: 14px 14px 16px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+}
+
+.featureCard h3 {
+  font-size: 1rem;
+  margin: 0 0 6px;
+}
+
+.featureCard p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+/* How it works */
+
+.how {
+  margin-top: 48px;
+}
+
+.steps {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.steps li + li {
+  margin-top: 4px;
+}
+
+/* Pricing */
+
+.pricing {
+  margin-top: 48px;
+}
+
+.priceCard {
+  max-width: 320px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.04);
+}
+
+.priceLabel {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.price {
+  margin: 0 0 6px;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.priceNote {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--muted);
+}
+
+/* Footer */
+
+.footer {
+  margin-top: 24px;
+  padding: 12px 16px 18px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.2fr);
+  }
+
+  .heroCard {
+    max-width: 380px;
+    margin-top: 12px;
+  }
+
+  .featureGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .main {
+    padding-inline: 12px;
+  }
+
+  .hero {
+    gap: 20px;
+  }
+
+  .heroCard {
+    max-width: 100%;
+  }
+
+  .featureGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .priceCard {
+    max-width: 100%;
+  }
+}

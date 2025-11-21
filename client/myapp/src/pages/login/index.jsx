@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Login.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export default function Login() {
@@ -8,6 +8,8 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,6 +31,8 @@ export default function Login() {
       );
 
       setMessage(response.data.message);
+      localStorage.setItem("token", response.data.token);
+      navigate("/profile");
     } catch (err) {
       alert(err.response.data.message);
     } finally {

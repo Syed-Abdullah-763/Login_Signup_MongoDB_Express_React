@@ -19,6 +19,8 @@ export default function OtpVerify() {
 
     try {
       const email = location?.state?.email;
+      const token = location?.state?.token;
+
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}auth/verify-otp`,
         {
@@ -29,7 +31,8 @@ export default function OtpVerify() {
 
       setMessage(response.data.message);
 
-      navigate("/login");
+      localStorage.setItem("token", token);
+      navigate("/profile");
     } catch (err) {
       alert(err.response.data.message);
     } finally {

@@ -41,6 +41,7 @@ export default function Signup() {
       navigate("/otp-verification", {
         state: {
           email: form.email,
+          token: response.data.token,
         },
       });
     } catch (err) {
