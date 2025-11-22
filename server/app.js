@@ -4,6 +4,7 @@ import cors from "cors";
 import { dbConnect } from "./config/db.js";
 import authRoute from "./routes/auth.js";
 import imageRoute from "./routes/image.js";
+import userRoute from "./routes/user.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ dbConnect();
 // all apis
 app.use("/api/auth", authRoute);
 app.use("/api/image", imageRoute);
+app.use("/api/user", userRoute);
 
 // root api
 app.get("/", (req, res) => {
