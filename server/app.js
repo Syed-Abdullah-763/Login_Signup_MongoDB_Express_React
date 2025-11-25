@@ -5,8 +5,8 @@ import { dbConnect } from "./config/db.js";
 import authRoute from "./routes/auth.js";
 import imageRoute from "./routes/image.js";
 import userRoute from "./routes/user.js";
-import rateLimit from "express-rate-limit";
 import { limiter } from "./config/rateLimit.js";
+import "./config/cron.js";
 
 dotenv.config();
 
