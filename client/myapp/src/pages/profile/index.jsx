@@ -1,14 +1,98 @@
-import React, { use, useRef, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import Navbar from "../../components/navbar";
 import styles from "./profile.module.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Profile() {
   const [file, setFile] = useState(null);
   const [filePreview, setFilePreview] = useState(null);
   const [imgUrl, setimgUrl] = useState("../../../assets/icon-7797704_640.png");
+  const [user, setUser] = useState({});
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [age, setAge] = useState("");
 
   const inputRef = useRef(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}user/user`,
+        {
+          headers: {
+            Authorization: `bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      if (response.data.data.imageUrl) {
+        setimgUrl(response.data.data.imageUrl);
+      }
+
+      setName(response.data.data.name);
+      setEmail(response.data.data.email);
+      setAge(response.data.data.age);
+      setUser(response.data.data);
+    } catch (error) {
+      console.log(error.message);
+      if (error.status == 401) {
+        localStorage.removeItem("token");
+        navigate("/");
+      }
+    }
+  };
+
+  const updateUser = async () => {
+    try {
+      if (name === user.name && age === user.age) {
+        return;
+      }
+
+      const payload = {};
+
+      name !== user.name && age === user.age
+        ? (payload.name = name)
+        : age !== user.age && name == user.name
+        ? (payload.age = age)
+        : ((payload.name = name), (payload.age = age));
+
+      const isConfirm = confirm("Are You sure you want to update something?");
+
+      if (!isConfirm) {
+        return;
+      }
+
+      const response = await axios.put(
+        `${import.meta.env.VITE_API_URL}user/user`,
+        payload,
+        {
+          headers: {
+            Authorization: `bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      console.log(response);
+
+      setName(response.data.data.name);
+      setEmail(response.data.data.email);
+      setAge(response.data.data.age);
+      setUser(response.data.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const canselHandler = () => {
+    setName(user.name);
+    setAge(user.age);
+  };
 
   const fileHandler = () => {
     inputRef.current.click();
@@ -129,7 +213,10 @@ function Profile() {
                 <input
                   id="fullName"
                   type="text"
-                  defaultValue="Syed Abdullah"
+                  onChange={(event) => {
+                    setName(event.target.value);
+                  }}
+                  value={name}
                   className={styles.input}
                 />
               </div>
@@ -142,7 +229,10 @@ function Profile() {
                   id="age"
                   type="number"
                   min="0"
-                  defaultValue="17"
+                  onChange={(event) => {
+                    setAge(event.target.value);
+                  }}
+                  value={age}
                   className={styles.input}
                 />
               </div>
@@ -154,7 +244,7 @@ function Profile() {
                 <input
                   id="email"
                   type="email"
-                  defaultValue="email@gmai.com"
+                  value={email}
                   className={styles.input}
                   disabled
                 />
@@ -165,8 +255,12 @@ function Profile() {
             </div>
 
             <div className={styles.actionsRow}>
-              <button className={styles.secondaryBtn}>Cancel</button>
-              <button className={styles.primaryBtn}>Update Changes</button>
+              <button className={styles.secondaryBtn} onClick={canselHandler}>
+                Cancel
+              </button>
+              <button className={styles.primaryBtn} onClick={updateUser}>
+                Update Changes
+              </button>
             </div>
           </div>
         </section>

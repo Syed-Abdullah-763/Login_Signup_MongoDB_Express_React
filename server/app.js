@@ -5,6 +5,8 @@ import { dbConnect } from "./config/db.js";
 import authRoute from "./routes/auth.js";
 import imageRoute from "./routes/image.js";
 import userRoute from "./routes/user.js";
+import rateLimit from "express-rate-limit";
+import { limiter } from "./config/rateLimit.js";
 
 dotenv.config();
 
@@ -20,8 +22,8 @@ app.use(cors());
 dbConnect();
 
 // all apis
-app.use("/api/auth", authRoute);
-app.use("/api/image", imageRoute);
+app.use("/api/auth", limiter, authRoute);
+app.use("/api/image", limiter, imageRoute);
 app.use("/api/user", userRoute);
 
 // root api

@@ -5,7 +5,7 @@ const PublicRoute = () => {
   return !localStorage.getItem("token") ? (
     <Outlet />
   ) : (
-    <Navigate to={"/dashboard"} />
+    <Navigate to={"/profile"} />
   );
 };
 

@@ -53,7 +53,7 @@ export default function Navbar() {
             className={styles.primaryBtn}
             onClick={() => {
               localStorage.removeItem("token");
-              navigate("/login");
+              navigate("/login", { replace: true });
             }}
           >
             Logout

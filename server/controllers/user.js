@@ -5,7 +5,6 @@ export const getUserCotroller = async (req, res) => {
     const userId = req.userId;
 
     const response = await userModel.findById(userId);
-    console.log(response);
 
     const data = {
       name: response.name,
@@ -17,7 +16,7 @@ export const getUserCotroller = async (req, res) => {
     res.status(200).json({
       message: "User get successfully!",
       status: true,
-      data,
+      data: data,
     });
   } catch (error) {
     res.status(500).json({
